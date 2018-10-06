@@ -126,21 +126,25 @@ static void Run(request_rec *req)
 	string inputFile, outputDir;
 	string outputFileNameOnly;
 	string destFile;
-	//string fileExt;
 	string waterMarkText;
-	PIXMAP *img2 = new PIXMAP(10, 10);
-	PIXMAP *photo;
+	string ret;
+
+	PIXMAP *photo = nullptr;
+	PIXMAP *border = nullptr;
+	unsigned char *finalImageRawPixels;
+
 	bool addBorder = true;
 	bool addTint = true;
-	unsigned char *finalImageRawPixels;
-	char slash = '\\';
-	string ret;
-	srand(time(0));
 	bool error = false;
+	
+	char slash = '\\';
 	int bw;
 	int bh;
 	int bpp;
 	
+
+
+	srand(time(0));
 	string args = req->args;
 	vector<string> argTokens = StringUtils::Tokenize(args, "&");
 	inputFile = GetArgValue(argTokens, "input");
@@ -161,9 +165,6 @@ static void Run(request_rec *req)
 		ret += "\ncouldnt load image: " + inputFile;
 		error = true;
 	}
-
-	//std::size_t found = inputFile.find_last_of(".");
-	//fileExt = inputFile.substr(found + 1);
 
 
 	if (outputDir.empty())
@@ -281,7 +282,7 @@ static void Run(request_rec *req)
 	if (addBorder)
 	{
 		int borderSize = GetRandomNum(10, 20);
-		PIXMAP *border = new PIXMAP(photo->w + borderSize, photo->h + borderSize);
+		border = new PIXMAP(photo->w + borderSize, photo->h + borderSize);
 
 		//do we want to add a border?
 		if (GetRandomNum(0, 100) > 50)
@@ -297,6 +298,7 @@ static void Run(request_rec *req)
 		finalImageRawPixels = (unsigned char *)border->pixels;
 		bw = border->w;
 		bh = border->h;
+		
 	}
 	else
 		finalImageRawPixels = (unsigned char *)photo->pixels;
@@ -304,7 +306,12 @@ static void Run(request_rec *req)
 	//4th param = comp, which is 1=Y, 2=YA, 3=RGB, 4=RGBA.
 	stbi_write_png(destFile.c_str(), bw, bh, 4, finalImageRawPixels, bw * sizeof(unsigned int));
 	ret += "\nsuccess! new file: " + destFile;
+	
 
+	photo->Destroy();
+	if(addBorder)
+		border->Destroy();
+	finalImageRawPixels = nullptr;
 
 	ap_rputs(ret.c_str(), req);
 	req->content_type = "application/json;charset=UTF-8";
