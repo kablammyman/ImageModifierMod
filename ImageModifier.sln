@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageModifier", "ImageModifier\ImageModifier.vcxproj", "{E96766B1-1E3F-42B8-8CED-DC95B466B938}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageModifierTest", "ImageModifierTest\ImageModifierTest.vcxproj", "{08F18C29-527C-4DF0-8462-8FC2FBE103F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,19 @@ Global
 		{E96766B1-1E3F-42B8-8CED-DC95B466B938}.Release|x64.Build.0 = Release|x64
 		{E96766B1-1E3F-42B8-8CED-DC95B466B938}.Release|x86.ActiveCfg = Release|Win32
 		{E96766B1-1E3F-42B8-8CED-DC95B466B938}.Release|x86.Build.0 = Release|Win32
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Debug|x64.ActiveCfg = Debug|x64
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Debug|x64.Build.0 = Debug|x64
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Debug|x86.ActiveCfg = Debug|Win32
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Debug|x86.Build.0 = Debug|Win32
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Release|x64.ActiveCfg = Release|x64
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Release|x64.Build.0 = Release|x64
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Release|x86.ActiveCfg = Release|Win32
+		{08F18C29-527C-4DF0-8462-8FC2FBE103F6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A8598B8-0AE4-445A-831A-824AB676F12D}
 	EndGlobalSection
 EndGlobal
